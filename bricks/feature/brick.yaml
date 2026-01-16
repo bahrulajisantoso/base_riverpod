@@ -1,0 +1,13 @@
+name: feature
+description: A new feature template with providers and views structure
+version: 0.1.0+1
+
+environment:
+  mason: ">=0.1.0-dev <1.0.0"
+
+vars:
+  feature_name:
+    type: string
+    description: What is the feature name?
+    default: example
+    prompt: What is the feature name?
