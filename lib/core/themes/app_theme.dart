@@ -1,4 +1,3 @@
-import 'package:expense/core/themes/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'app_text_theme.dart';
 
@@ -17,6 +16,8 @@ ThemeData appTheme(BuildContext context) {
     error: errorColor,
   );
 
+  final textTheme = appTextTheme(context);
+
   return ThemeData(
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
@@ -26,21 +27,16 @@ ThemeData appTheme(BuildContext context) {
       foregroundColor: colorScheme.onSurface,
       centerTitle: false,
       elevation: 0,
-      titleTextStyle: appTextTheme(
-        context,
-      ).titleMedium?.copyWith(color: colorScheme.onSurface),
-      iconTheme: IconThemeData(color: colorScheme.primary),
-      shape: Border(
-        bottom: BorderSide(
-          color: appColorScheme(context).surfaceContainer,
-          width: 1,
-        ),
+      titleTextStyle: textTheme.titleMedium?.copyWith(
+        color: colorScheme.onSurface,
       ),
+      iconTheme: IconThemeData(color: colorScheme.primary),
+      shape: Border(bottom: BorderSide(color: colorScheme.surfaceContainer)),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: colorScheme.onPrimary,
-      selectedLabelStyle: appTextTheme(context).labelSmall,
-      unselectedLabelStyle: appTextTheme(context).labelSmall,
+      selectedLabelStyle: textTheme.labelSmall,
+      unselectedLabelStyle: textTheme.labelSmall,
       selectedItemColor: colorScheme.primary,
       unselectedItemColor: colorScheme.outlineVariant,
       elevation: 0,
@@ -64,7 +60,7 @@ ThemeData appTheme(BuildContext context) {
         borderRadius: radius,
         side: const BorderSide(color: Colors.transparent),
       ),
-      labelStyle: appTextTheme(context).labelLarge?.copyWith(
+      labelStyle: textTheme.labelLarge?.copyWith(
         color: WidgetStateColor.resolveWith((states) {
           return states.contains(WidgetState.selected)
               ? colorScheme.onPrimary
@@ -99,9 +95,7 @@ ThemeData appTheme(BuildContext context) {
         }),
         padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
         textStyle: WidgetStateProperty.all(
-          appTextTheme(
-            context,
-          ).titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(borderRadius: radius),
@@ -122,9 +116,7 @@ ThemeData appTheme(BuildContext context) {
         }),
         padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
         textStyle: WidgetStateProperty.all(
-          appTextTheme(
-            context,
-          ).titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(borderRadius: radius),
@@ -137,9 +129,7 @@ ThemeData appTheme(BuildContext context) {
         foregroundColor: WidgetStateProperty.all(colorScheme.primary),
         padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
         textStyle: WidgetStateProperty.all(
-          appTextTheme(
-            context,
-          ).titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
         ),
         side: WidgetStateProperty.all(BorderSide(color: colorScheme.primary)),
         shape: WidgetStateProperty.all(
@@ -153,12 +143,15 @@ ThemeData appTheme(BuildContext context) {
       shape: RoundedRectangleBorder(borderRadius: radius),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: colorScheme.onPrimary,
+      floatingLabelStyle: TextStyle(color: colorScheme.primary),
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
         borderRadius: radius,
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: colorScheme.outlineVariant),
+        borderSide: BorderSide(color: colorScheme.outline),
         borderRadius: radius,
       ),
       focusedBorder: OutlineInputBorder(
@@ -174,9 +167,9 @@ ThemeData appTheme(BuildContext context) {
         borderRadius: radius,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      hintStyle: appTextTheme(
-        context,
-      ).bodyLarge?.copyWith(color: colorScheme.outlineVariant),
+      hintStyle: textTheme.bodyLarge?.copyWith(
+        color: colorScheme.outlineVariant,
+      ),
     ),
     navigationBarTheme: NavigationBarThemeData(
       elevation: 0,
@@ -186,7 +179,7 @@ ThemeData appTheme(BuildContext context) {
       indicatorColor: Colors.transparent,
       labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       labelTextStyle: WidgetStateProperty.resolveWith(
-        (states) => appTextTheme(context).labelSmall?.copyWith(
+        (states) => textTheme.labelSmall?.copyWith(
           color: states.contains(WidgetState.selected)
               ? primaryColor
               : colorScheme.outlineVariant,
@@ -227,9 +220,9 @@ ThemeData appTheme(BuildContext context) {
               : primaryColor;
         }),
         padding: WidgetStateProperty.all(const EdgeInsets.all(12)),
-        textStyle: WidgetStateProperty.all(appTextTheme(context).titleMedium),
+        textStyle: WidgetStateProperty.all(textTheme.titleMedium),
       ),
     ),
-    textTheme: appTextTheme(context),
+    textTheme: textTheme,
   );
 }
