@@ -9,7 +9,7 @@ class AppPages {
       GoRoute(
         name: AppRoutes.home,
         path: AppRoutes.home,
-        builder: (_, __) => const MainPage(),
+        builder: (_, _) => const MainPage(),
       ),
     ],
   );
