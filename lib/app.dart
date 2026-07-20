@@ -1,9 +1,9 @@
-import 'package:expense/core/routes/app_pages.dart';
-import 'package:expense/core/themes/app_theme.dart';
+import 'package:base_riverpod/core/routes/app_pages.dart';
+import 'package:base_riverpod/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class App extends ConsumerWidget {
+class App extends HookConsumerWidget {
   const App({super.key});
 
   @override
